@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'styles/variables';
+@use 'styles/utils';
+
+body {
+    background-color: var(--VeryLightGrayishBlue);
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    font-optical-sizing: auto;
+    font-weight: var(--regular) !important;
+    font-style: normal;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

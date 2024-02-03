@@ -1,0 +1,58 @@
+.notification {
+    $self:&;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    &__image-container{
+        border-radius: 50%;
+    }
+    &__info{
+        margin-left: 25px;
+        &__title{
+            position: relative;
+            &__status{
+                color: var(--GrayishBlue);
+            }
+            &__details {
+                color: var(--DarkGrayishBlue);
+            }
+            >span {
+                padding-right: 5px;
+    
+                &.hover-blue {
+                    cursor: pointer;
+                    &:hover {
+                        color: var(--Blue);
+                    }
+                }
+            }
+        }
+        &__date{
+            color: var(--GrayishBlue);
+            margin-bottom: 10px;
+        }
+        &__message-box{
+            color: var(--DarkGrayishBlue);
+            background-color: var(--LightGrayishBlue);
+            border-radius: 5px;
+            padding: 15px;
+            font-weight: var(--bold);
+        }
+    }
+    &--urRead {
+        background-color: var(--VeryLightGrayishBlue);
+        .info{
+            &:after{
+                content: '';
+                position: absolute;
+                right: -6px;
+                top: 7px;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%; 
+                background-color: var(--Red);
+            }
+        }
+    }
+
+}
