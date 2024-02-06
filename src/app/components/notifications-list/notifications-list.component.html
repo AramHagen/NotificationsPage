@@ -35,7 +35,7 @@
                 <span class="notification__info__title__details font-weight-bold hover-blue">{{notification.groupName}}</span>
             }
         </div>
-        <div class="notification__info__date">5 days a go</div>
+        <div class="notification__info__date">{{notification.date | timeAgo}}</div>
         @if(notification.message){
             <div class="notification__info__message-box">{{notification.message}}</div>
         }
