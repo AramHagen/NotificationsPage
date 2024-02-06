@@ -15,14 +15,17 @@ export class NotificationFecadeService {
      return this.notificationStatusService.getNotifictions$();
     }
     loadNotifications(){
-      console.log('miad?');
       this.notificationApiService.getAllNotifications().subscribe((notifications)=>{
         this.notificationStatusService.setNotifications(notifications)
       })
-    // return this.notificationApiService.getAllNotifications().pipe(tap(notifications => this.notificationStatusService.setNotifications(notifications)))
     }
     markAllAsRead(){
-      this.notificationApiService.markAllAsRead().pipe(tap(notifications => this.notificationStatusService.setNotifications(notifications)))
-  
+      this.notificationApiService.markAllAsRead().subscribe((notifications)=>{
+        this.notificationStatusService.setCounter(0);
+        this.notificationStatusService.setNotifications(notifications);
+      })
+    }
+    getUnreadCount$():Observable<number>{
+      return this.notificationStatusService.getUnreadCount$();
     }
 }

@@ -16,11 +16,15 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class NotificationPageComponent implements OnInit {
     notifications$:Observable<Notification[]>;
+    unreadCounter$:Observable<number>;
     constructor(private notificationFecadeService:NotificationFecadeService){
         this.notifications$ = this.notificationFecadeService.getNotifications$();
+        this.unreadCounter$ = this.notificationFecadeService.getUnreadCount$()
     }
     ngOnInit(): void {
        this.notificationFecadeService.loadNotifications();
     }
-
+    markAllAsRead(){
+        this.notificationFecadeService.markAllAsRead();
+    }
 }

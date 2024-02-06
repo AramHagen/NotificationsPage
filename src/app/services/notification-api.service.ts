@@ -10,10 +10,9 @@ export class NotificationApiService {
  private url = "http://localhost:3000/notifications";
   constructor(private http:HttpClient) { }
   getAllNotifications():Observable<Notification[]>{
-    console.log('miad2')
     return this.http.get<Notification[]>(this.url)
   }
-  markAllAsRead(): Observable<any> {
+  markAllAsRead(): Observable<Notification[]> {
     // Use switchMap to chain the getAllNotifications Observable with the update logic
     return this.getAllNotifications().pipe(
       switchMap(notifications => {

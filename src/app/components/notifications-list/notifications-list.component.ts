@@ -12,9 +12,7 @@ import { TimeAgoPipe } from '../../pipes/time-ago.pipe';
 })
 export class NotificationsListComponent {
   @Input() notifications: Notification[] = [];
-  constructor() { 
-    console.log('this.notifications', this.notifications)
-  }
+
   trackByFn(index: number, item:Notification): string {
     return item?.id!;
   }
