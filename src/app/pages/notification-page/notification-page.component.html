@@ -9,5 +9,5 @@
         </div>
         <button mat-button class="blue">All all as read</button>
     </div>
-    <app-notifications-list></app-notifications-list>
+    <app-notifications-list [notifications]="(notifications$ | async) || []"></app-notifications-list>
 </div>
