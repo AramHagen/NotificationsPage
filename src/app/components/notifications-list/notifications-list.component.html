@@ -1,27 +1,51 @@
-<div class="notification notification--urRead d-flex">
-    <div class="notification__image-container">
-        <img src="../../../assets/images/avatar-mark-webber.webp" width="30" height="30" alt="user-image">
-    </div>
-    <div class="notification__info">
-        <div class="notification__info__title">
-            <span class="notification__info__title__name font-weight-bold hover-blue">Mark Webber</span>
-            <span class="notification__info__title__status">reacted to your recent post</span>
-            <span class="notification__info__title__details font-weight-bold hover-blue">My first tournament today!</span>
+@for (notification of notifications; track notification.id) {
+<div class="notification d-flex space-between" [ngClass]="{'notification--urRead':notification.unread}">
+    <div class="d-flex">
+        <div class="notification__image-container">
+            <img [src]="notification.avatar" width="30" height="30" alt="user-image">
         </div>
-        <div class="notification__info__date">5 days a go</div>
-    </div>
-</div>
-<div class="notification d-flex">
-    <div class="notification__image-container">
-        <img src="../../../assets/images/avatar-mark-webber.webp" width="30" height="30" alt="user-image">
-    </div>
-    <div class="notification__info">
-        <div class="notification__info__title">
-            <span class="notification__info__title__name font-weight-bold hover-blue">Mark Webber</span>
-            <span class="notification__info__title__status">reacted to your recent post</span>
-            <span class="notification__info__title__details font-weight-bold hover-blue">My first tournament today!</span>
+        <div class="notification__info">
+            <div class="notification__info__title">
+                <span class="notification__info__title__name font-weight-bold hover-blue">{{notification.firstName}}
+                    {{notification.lastName}}</span>
+                    @switch (notification.type) {
+                        @case ('follow') {
+                            <span class="notification__info__title__status">followed you</span>
+                        }
+                        @case ('joinGroup') {
+                            <span class="notification__info__title__status">has joined your group</span>
+                        }
+                        @case ('recentPostReact') {
+                            <span class="notification__info__title__status">reacted to your recent post</span>
+                        }
+                        @case ('sendMessage') {
+                            <span class="notification__info__title__status">sent you a private message</span>
+                        }
+                        @case ('comment') {
+                            <span class="notification__info__title__status">commented on your picture</span>
+                        }
+                        @case ('leftGroup') {
+                            <span class="notification__info__title__status">left the group</span>
+                        }
+                    }
+                
+                @if(notification.postTitle){
+                    <span class="notification__info__title__details font-weight-bold hover-blue">{{notification.postTitle}}</span>
+                }
+                @if(notification.groupName){
+                    <span class="notification__info__title__details font-weight-bold hover-blue">{{notification.groupName}}</span>
+                }
+            </div>
+            <div class="notification__info__date">{{notification.date | timeAgo}}</div>
+            @if(notification.message){
+                <div class="notification__info__message-box">{{notification.message}}</div>
+            }
         </div>
-        <div class="notification__info__date">5 days a go</div>
-        <div class="notification__info__message-box">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.</div>
     </div>
+    @if(notification.postedImage){
+        <div class="">
+            <img [src]="notification.postedImage" width="30" height="30" alt="user-image">
+        </div>
+    }
 </div>
+}
