@@ -45,3 +45,11 @@
       }
     }
   }
+  .DarkGrayishBlue{
+    color: var(--DarkGrayishBlue);
+    &.mat-mdc-button{
+      &:not(:disabled){
+        color: var(--Blue);
+      }
+    }
+  }

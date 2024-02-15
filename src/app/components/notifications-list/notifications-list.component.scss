@@ -9,7 +9,7 @@
     &__info{
         margin-left: 25px;
         &__title{
-            position: relative;
+            
             &__status{
                 color: var(--GrayishBlue);
             }
@@ -41,17 +41,21 @@
     }
     &--urRead {
         background-color: var(--VeryLightGrayishBlue);
-        .info{
-            &:after{
-                content: '';
-                position: absolute;
-                right: -6px;
-                top: 7px;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%; 
-                background-color: var(--Red);
+        #{ $self }__info{
+            &__title{
+                position: relative;
+                &:after{
+                    content: '';
+                    position: absolute;
+                    right: -6px;
+                    top: 7px;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%; 
+                    background-color: var(--Red);
+                }
             }
+        
         }
     }
 
