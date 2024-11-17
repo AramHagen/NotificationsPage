@@ -16,11 +16,18 @@ export class NotificationFecadeService {
     }
     loadNotifications(){
       this.notificationApiService.getAllNotifications().subscribe((notifications)=>{
-        this.notificationStatusService.setNotifications(notifications)
+        const isUnread = notifications.filter(x=>x.unread);
+        if(isUnread.length !==3){
+          const data = notifications.map((item, index) => ({...item, unread: index < 3}));
+          const newList = this.notificationApiService.initiateDbJson(data);
+          this.notificationStatusService.setNotifications(newList);
+        }else{
+          this.notificationStatusService.setNotifications(notifications);
+        }
       })
     }
-    markAllAsRead(){
-      this.notificationApiService.markAllAsRead().subscribe((notifications)=>{
+    markAllAsRead(id?:string){
+      this.notificationApiService.markAllAsRead(id).subscribe((notifications)=>{
         this.notificationStatusService.setCounter(0);
         this.notificationStatusService.setNotifications(notifications);
       })

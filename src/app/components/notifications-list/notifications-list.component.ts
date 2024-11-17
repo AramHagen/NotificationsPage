@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { Notification } from '../../models/notification.model';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TimeAgoPipe } from '../../pipes/time-ago.pipe';
+import {emit} from "@angular-devkit/build-angular/src/tools/esbuild/angular/compilation/parallel-worker";
 @Component({
   selector: 'app-notifications-list',
   standalone: true,
@@ -12,8 +13,16 @@ import { TimeAgoPipe } from '../../pipes/time-ago.pipe';
 })
 export class NotificationsListComponent {
   @Input() notifications: Notification[] = [];
+  @Output() onUnread: EventEmitter<string> = new EventEmitter();
 
   trackByFn(index: number, item:Notification): string {
     return item?.id!;
+  }
+  onUnreadComment(event: any,notification:Notification){
+    event.preventDefault();
+    if(event.currentTarget.classList.contains('notification--urRead')){
+      event.currentTarget.classList.remove('notification--urRead');
+      this.onUnread.emit(notification.id);
+    }
   }
 }

@@ -1,8 +1,8 @@
 @for (notification of notifications; track notification.id) {
-<div class="notification d-flex space-between" [ngClass]="{'notification--urRead':notification.unread}">
+<div class="notification d-flex space-between" (click)="onUnreadComment($event,notification)" [ngClass]="{'notification--urRead':notification.unread}">
     <div class="d-flex">
         <div class="notification__image-container">
-            <img [src]="notification.avatar" width="30" height="30" alt="user-image">
+            <img [src]="notification.avatar" width="45" height="45" alt="user-avatar">
         </div>
         <div class="notification__info">
             <div class="notification__info__title">
@@ -28,13 +28,16 @@
                             <span class="notification__info__title__status">left the group</span>
                         }
                     }
-                
+
                 @if(notification.postTitle){
                     <span class="notification__info__title__details font-weight-bold hover-blue">{{notification.postTitle}}</span>
                 }
                 @if(notification.groupName){
                     <span class="notification__info__title__details font-weight-bold hover-blue">{{notification.groupName}}</span>
                 }
+               @if(notification.unread){
+                 <span class="red-bullet"></span>
+               }
             </div>
             <div class="notification__info__date">{{notification.date | timeAgo}}</div>
             @if(notification.message){
@@ -43,8 +46,8 @@
         </div>
     </div>
     @if(notification.postedImage){
-        <div class="">
-            <img [src]="notification.postedImage" width="30" height="30" alt="user-image">
+        <div class="notification__post-image">
+            <img [src]="notification.postedImage" width="45" height="45" alt="post-image">
         </div>
     }
 </div>

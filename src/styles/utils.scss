@@ -9,6 +9,10 @@
     align-items: center;
     justify-content: center;
 }
+.d-flex-align-center{
+  display: flex;
+  align-items: center;
+}
 //font-weight--------------------
 .font-weight-thin{
     font-weight: var(--thin);
@@ -46,9 +50,22 @@
     }
   }
   .DarkGrayishBlue{
-    color: var(--DarkGrayishBlue);
-    &.mat-mdc-button{
-      &:not(:disabled){
+    .mdc-button__ripple{
+      display: none;
+    }
+    &.mdc-button{
+      color: var(--DarkGrayishBlue);
+    }
+    &.mat-mdc-button:not(:disabled)
+    {
+      color: var(--DarkGrayishBlue);
+      background:none;
+    }
+    &:hover{
+      mdc-button__ripple{
+        display: none;
+      }
+      .mdc-button__label{
         color: var(--Blue);
       }
     }

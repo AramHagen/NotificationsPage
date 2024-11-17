@@ -12,5 +12,5 @@
             }
         </ng-container>
     </div>
-    <app-notifications-list [notifications]="(notifications$ | async) || []"></app-notifications-list>
+    <app-notifications-list (onUnread)="markAllAsRead($event)" [notifications]="(notifications$ | async) || []"></app-notifications-list>
 </div>
