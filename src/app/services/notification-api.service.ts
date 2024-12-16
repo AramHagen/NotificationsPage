@@ -44,11 +44,12 @@ export class NotificationApiService {
       })
     );
   }
-  initiateDbJson(data:Notification[]):Notification[] {
-    for(let i=0;i<3;i++){
-      const updatedNotification = { ...data[i], unread: true };
-      this.http.put<Notification>(`${this.url}/${data[i].id}`, updatedNotification).subscribe();
-    }
-    return data;
-  }
+  // initiateDbJson(data:Notification[]):Notification[] {
+  //
+  //   // for(let i=0;i<3;i++){
+  //   //   const updatedNotification = { ...data[i], unread: true };
+  //   //   this.http.put<Notification>(`${this.url}/${data[i].id}`, updatedNotification).subscribe();
+  //   // }
+  //   // return data;
+  // }
 }
