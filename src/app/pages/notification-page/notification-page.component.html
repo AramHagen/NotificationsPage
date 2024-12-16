@@ -1,16 +1,26 @@
 <div class="container">
-    <div class="d-flex space-between margin-bottom">
-        <ng-container *ngIf="unreadCounter$ | async as counter">
-            @if(counter!=0){
-            <div>
-                <span class="font-weight-bold fs-18 d-flex-center">Notifications
-                    <span class="square-badge d-flex-center">{{ counter}}</span>
-                </span>
-                <span class=""></span>
-            </div>
-            <button mat-button class="DarkGrayishBlue font-weight-regular" (click)="markAllAsRead()">Mark all as read</button>
-            }
-        </ng-container>
-    </div>
-    <app-notifications-list (onUnread)="markAllAsRead($event)" [notifications]="(notifications$ | async) || []"></app-notifications-list>
+  <div class="d-flex space-between margin-bottom">
+    <ng-container *ngIf="unreadCounter$ | async as counter">
+      @if(counter!=0){
+      <div>
+        <span class="font-weight-bold fs-18 d-flex-center"
+          >Notifications
+          <span class="square-badge d-flex-center">{{ counter }}</span>
+        </span>
+        <span class=""></span>
+      </div>
+      <button
+        mat-button
+        (click)="markAllAsRead()"
+        class="DarkGrayishBlue font-weight-regular"
+      >
+        Mark all as read
+      </button>
+      }
+    </ng-container>
+  </div>
+  <app-notifications-list
+    (onUnread)="markAllAsRead($event)"
+    [notifications]="(notifications$ | async) || []"
+  ></app-notifications-list>
 </div>
